@@ -2,20 +2,17 @@ import requests
 
 def test_get():
     s = requests.Session()
-    r = s.get('http://127.0.0.1:8080/')
-    print(r)
-    print(r)
 
-    def send_fault(self, fault):
-        base = "'http://127.0.0.1:8080/'"
-        resource = 'faults'
-        try:
-            response = self.session.post(f'{base}/{resource}?script=json', json={"cmd": fault})
-            if response.status_code != 200:
-                raise ValueError(f"Failed to send fault cmd={fault}. Returned {response.json()}")
-            return response.json()
-        except Exception as e:
-            print(f"Exception thrown in  {e}")
+def add_fault(self, fault):
+    base = "'http://127.0.0.1:8080/'"
+    resource = 'faults'
+    try:
+        response = self.session.post(f'{base}/{resource}?script=json', json={"fault": fault})
+        if response.status_code != 200:
+            raise ValueError(f"Failed to send fault cmd={fault}. Returned {response.json()}")
+        return response.json()
+    except Exception as e:
+        print(f"Exception {e}")
 
 
 
@@ -37,7 +34,8 @@ def test_put():
 
 
 if __name__ == '__main__':
-    test_put()
+    add_fault({'name':'post fault method'})
+    #test_put()
     # test_get()
 
 
